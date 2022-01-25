@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1011306453541:android:b7ea47e9ef8e88f7e97dcc",
         "android_client_info": {
-          "package_name": "com.example.digiagro"
+          "package_name": "tech.debuglabs.digiagro"
         }
       },
       "oauth_client": [
