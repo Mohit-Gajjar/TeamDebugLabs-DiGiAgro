@@ -58,7 +58,7 @@ While using Our Service, We may ask You to provide Us with certain personally id
 
 
 
-- Address, State, Province, ZIP/Postal code, City
+- Location Co-Ordinates
 
 
 - Usage Data
