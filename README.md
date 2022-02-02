@@ -61,8 +61,6 @@ While using Our Service, We may ask You to provide Us with certain personally id
 - Location Co-Ordinates
 
 
-- Usage Data
-
 
 
 ### Usage Data
