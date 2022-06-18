@@ -2,14 +2,14 @@ import 'package:digiagro/Sercives/local_database.dart';
 import 'package:digiagro/home.dart';
 import 'package:flutter/material.dart';
 
-class SelectCrop extends StatefulWidget {
-  const SelectCrop({Key? key}) : super(key: key);
+class FirstSelectCrop extends StatefulWidget {
+  const FirstSelectCrop({Key? key}) : super(key: key);
 
   @override
-  _SelectCropState createState() => _SelectCropState();
+  _FirstSelectCropState createState() => _FirstSelectCropState();
 }
 
-class _SelectCropState extends State<SelectCrop> {
+class _FirstSelectCropState extends State<FirstSelectCrop> {
   void selectCrop(String crop) {
     LocalDatabase.saveCropIsSelectedSharedPrefs(true);
     LocalDatabase.saveCropSharedPrefs(crop);
@@ -20,44 +20,31 @@ class _SelectCropState extends State<SelectCrop> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          centerTitle: true,
-          title: const Text(
-            "Select Crop",
-            style: TextStyle(
-                fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
-          ),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        title: const Text(
+          "Select Crop",
+          style: TextStyle(
+              fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
         ),
-        body: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20),
-          child: GridView.count(
-              crossAxisCount: 3,
-              crossAxisSpacing: 4.0,
-              mainAxisSpacing: 8.0,
-              children: List.generate(crops.length, (index) {
-                return Center(
-                  child: GestureDetector(
-                      onTap: () => selectCrop(crops[index]),
-                      child: SelectCard(choice: choices[index])),
-                );
-              })),
-        ),
-        bottomSheet: Row(
-          children: [
-            const Spacer(),
-            TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text(
-                  'Cancel',
-                  style: TextStyle(
-                      color: Colors.red,
-                      decoration: TextDecoration.underline,
-                      fontSize: 16),
-                ))
-          ],
-        ));
+      ),
+      body: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 20),
+        child: GridView.count(
+            crossAxisCount: 3,
+            crossAxisSpacing: 4.0,
+            mainAxisSpacing: 8.0,
+            children: List.generate(crops.length, (index) {
+              return Center(
+                child: GestureDetector(
+                    onTap: () => selectCrop(crops[index]),
+                    child: SelectCard(choice: choices[index])),
+              );
+            })),
+      ),
+    );
   }
 }
 

@@ -1,10 +1,14 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:digiagro/Components/select_crop.dart';
+import 'package:digiagro/Components/first_time_crop_selection.dart';
 import 'package:digiagro/Sercives/local_database.dart';
 import 'package:digiagro/home.dart';
+import 'package:flutter/gestures.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'Components/policy_dialog.dart';
+import 'Components/terms_and_conditions_dialog.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -129,7 +133,7 @@ class _RootState extends State<Root> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const SelectCrop()),
+                          builder: (context) => const FirstSelectCrop()),
                     );
                     LocalDatabase.saveViewedPageSelectedSharedPrefs(true);
                   },
@@ -147,12 +151,64 @@ class _RootState extends State<Root> {
                       ),
                     ),
                   ),
-                )
+                ),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 50),
+                  child: Image(
+                    image: const AssetImage('assets/splashIcon.png'),
+                    width: MediaQuery.of(context).size.width,
+                  ),
+                ),
               ],
             ),
-            bottomSheet: Image(
-              image: const AssetImage('assets/splashIcon.png'),
-              width: MediaQuery.of(context).size.width,
+            bottomSheet: Container(
+              color: Colors.white,
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                        text:
+                            "By clicking on Get Started button, you are agreeing to our\n",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w400, color: Colors.black),
+                        children: [
+                          TextSpan(
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return const TermsAndConditionsDialog();
+                                      });
+                                },
+                              text: "Terms & Conditions ",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black)),
+                          const TextSpan(
+                              text: "and ",
+                              style: TextStyle(color: Colors.black)),
+                          TextSpan(
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return const PolicyDialog();
+                                      });
+                                },
+                              text: "Privacy Policy ",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black)),
+                        ]),
+                  ),
+                ),
+              ),
+              height: 60,
             ),
           )
         : const Home();

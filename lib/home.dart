@@ -1,5 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:digiagro/Components/about.dart';
 import 'package:digiagro/Components/crop_informaiton.dart';
 import 'package:digiagro/Components/select_crop.dart';
 import 'package:digiagro/Sercives/local_database.dart';
@@ -26,9 +27,9 @@ class _HomeState extends State<Home> {
   double? lat, lon;
   @override
   void initState() {
-    super.initState();
     _getPermissons();
     getCropName();
+    super.initState();
   }
 
   String cropName = ' ';
@@ -381,9 +382,9 @@ class _HomeState extends State<Home> {
         actions: [
           IconButton(
               onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const SelectCrop())),
+                  MaterialPageRoute(builder: (context) => const AboutUs())),
               icon: const Icon(
-                Icons.change_circle_outlined,
+                Icons.info_outline_rounded,
                 color: Colors.black,
               ))
         ],
@@ -428,6 +429,10 @@ class _HomeState extends State<Home> {
         image: const AssetImage('assets/home.png'),
         width: MediaQuery.of(context).size.width,
       ),
+      floatingActionButton: FloatingActionButton.extended(
+          onPressed: () => Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const SelectCrop())),
+          label: const Text("Change Crop")),
     );
   }
 }
